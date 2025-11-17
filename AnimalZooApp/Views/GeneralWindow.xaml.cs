@@ -31,40 +31,64 @@ namespace AnimalZooApp.Views
         {
             InitializeComponent();
             _ctx = new AppDbContext();
-            _filthValues = new List<string>()
+            FilthComboBox.ItemsSource = _filthValues = new List<string>()
             {
                 "Без фильтрации",
-                "Без животных",
-                "С животными",
+                "Мужской",
+                "Женский",
             };
-            _sortValues = new List<string>()
+            SortComboBox.ItemsSource = _sortValues = new List<string>()
             {
                 "Без сортировки",
-                "По количеству животных(убыв.)",
-                "По количеству животных(возр.)",
+                "По весу животного(убыв.)",
+                "По весу животного(возр.)",
             };
+            FilthComboBox.SelectedValue = _selectedFilth = _filthValues[0];
+            SortComboBox.SelectedValue = _selectedSort = _sortValues[0];
             UpdateList();
         }
         private void UpdateList()
         {
-            ValiersListView.ItemsSource = Search(_ctx.Valiers.Include(v=>v.Animals).ToList());
+            ValiersListView.ItemsSource = Sort(Search(Filth(_ctx.Animals.Include(v=>v.Valier).ToList())));
         }
-        private ICollection<Valier> Search(ICollection<Valier> valiers)
+        private ICollection<Animal> Search(ICollection<Animal> animals)
         {
-            if(string.IsNullOrWhiteSpace(SearchTextBox.Text)) return valiers;
-            else return valiers.Where(v=>v.Title.ToLower().Contains(SearchTextBox.Text.ToLower()) || v.DescriptionText.ToLower().Contains(SearchTextBox.Text.ToLower())).ToList();
+            if(string.IsNullOrWhiteSpace(SearchTextBox.Text)) return animals;
+            else return animals.Where(v=>v.Name.ToLower().Contains(SearchTextBox.Text.ToLower()) || v.DescriptionText.ToLower().Contains(SearchTextBox.Text.ToLower())).ToList();
         }
-        private ICollection<Valier> Sort(ICollection<Valier> valiers)
+        private ICollection<Animal> Sort(ICollection<Animal> animals)
         {
-            if (_sortValues[1] == _selectedSort) return valiers.OrderByDescending(v => v.Animals.Count).ToList();
-            else if (_sortValues[2] == _selectedSort) return valiers.OrderBy(v => v.Animals.Count).ToList();
-            else return valiers;
+            if (_sortValues[1] == _selectedSort) return animals.OrderByDescending(v => v.Weight).ToList();
+            else if (_sortValues[2] == _selectedSort) return animals.OrderBy(v => v.Weight).ToList();
+            else return animals;
         }
-
+        private ICollection<Animal> Filth(ICollection<Animal> animals)
+        {
+            if (_selectedFilth == _filthValues[1]) return animals.Where(v => !v.IsWoman).ToList();
+            else if (_selectedFilth == _filthValues[2]) return animals.Where(v => v.IsWoman).ToList();
+            return animals;
+        }
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             UpdateList();
         }
 
+        private void SortComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            _selectedSort = (string)SortComboBox.SelectedValue;
+            UpdateList();
+        }
+
+        private void FilthComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            _selectedFilth = (string)FilthComboBox.SelectedValue;
+            UpdateList();
+        }
+
+        private void AddAnimalButton_Click(object sender, RoutedEventArgs e)
+        {
+            new AnimalManageWindow(null,_ctx).ShowDialog();
+            UpdateList();
+        }
     }
 }

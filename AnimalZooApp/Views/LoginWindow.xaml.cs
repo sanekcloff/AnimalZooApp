@@ -53,5 +53,10 @@ namespace AnimalZooApp.Views
                 RefreshTest();
             }
         }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter) TestButton_Click(sender, e);
+        }
     }
 }

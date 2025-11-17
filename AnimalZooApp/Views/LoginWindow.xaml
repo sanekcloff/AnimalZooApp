@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AnimalZooApp.Views"
         mc:Ignorable="d"
-        Title="LoginWindow" Height="200" Width="250" WindowStartupLocation="CenterScreen">
+        Title="Окно входа" Height="200" Width="250" WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown">
     
     <StackPanel Orientation="Vertical" Margin="10" VerticalAlignment="Center">
 
         <TextBlock x:Name="TestTextBlock" Margin="10" Text="2 + 2 = ?" HorizontalAlignment="Center"/>
-        <TextBox x:Name="TestTextBox" Margin="10"/>
-        <Button x:Name="TestButton" Margin="10" Content="Вход" Click="TestButton_Click"/>
+        <TextBox x:Name="TestTextBox" Margin="10" TabIndex="1"/>
+        <Button x:Name="TestButton" Margin="10" Content="Вход" Click="TestButton_Click" TabIndex="0"/>
 
     </StackPanel>
     

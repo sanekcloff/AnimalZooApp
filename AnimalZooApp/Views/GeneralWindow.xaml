@@ -18,9 +18,15 @@
 
             <TextBox x:Name="SearchTextBox" Height="20" Width="200" Margin="5" TextChanged="SearchTextBox_TextChanged"/>
 
-            <ComboBox x:Name="SortComboBox" Height="20" Width="150" Margin="5"/>
+            <ComboBox x:Name="SortComboBox" Height="20" Width="150" Margin="5" SelectionChanged="SortComboBox_SelectionChanged"/>
             
-            <ComboBox x:Name="FilthComboBox" Height="20" Width="150" Margin="5"/>
+            <ComboBox x:Name="FilthComboBox" Height="20" Width="150" Margin="5" SelectionChanged="FilthComboBox_SelectionChanged"/>
+
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10">
+
+            <Button Content="Добавить животное" x:Name="AddAnimalButton" Click="AddAnimalButton_Click"/>
 
         </StackPanel>
 
