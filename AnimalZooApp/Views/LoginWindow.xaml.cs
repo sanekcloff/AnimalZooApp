@@ -31,6 +31,12 @@ namespace AnimalZooApp.Views
                 {"Как переводится Pizza","пицца"},
             };
             RefreshTest();
+
+            if (Properties.Settings.Default.RememeberMe)
+            {
+                RememberMeCheckBox.IsChecked = true;
+                OpenGeneralWindow();
+            }
         }
         private void RefreshTest()
         {
@@ -41,11 +47,9 @@ namespace AnimalZooApp.Views
         {
             if (TestTextBox.Text.ToLower() == _selectedTest.Value)
             {
-                MessageBox.Show("Верно!","Уведомление",MessageBoxButton.OK,MessageBoxImage.Information);
-                var tempWnd = Application.Current.MainWindow;
-                Application.Current.MainWindow = new GeneralWindow();
-                tempWnd.Close();
-                Application.Current.MainWindow.Show();
+                MessageBox.Show("Верно!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                Properties.Settings.Default.Save();
+                OpenGeneralWindow();
             }
             else
             {
@@ -54,9 +58,22 @@ namespace AnimalZooApp.Views
             }
         }
 
+        private void OpenGeneralWindow()
+        {
+            var tempWnd = Application.Current.MainWindow;
+            Application.Current.MainWindow = new GeneralWindow();
+            tempWnd.Close();
+            Application.Current.MainWindow.Show();
+        }
+
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter) TestButton_Click(sender, e);
+        }
+
+        private void RememberMeCheckBox_Click(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.RememeberMe = RememberMeCheckBox.IsChecked!.Value;
         }
     }
 }

@@ -46,6 +46,11 @@ namespace AnimalZooApp.Views
             FilthComboBox.SelectedValue = _selectedFilth = _filthValues[0];
             SortComboBox.SelectedValue = _selectedSort = _sortValues[0];
             UpdateList();
+
+            var val1 = new String("1");
+            var val2 = new String("1").GetHashCode();
+            MessageBox.Show(val1.GetHashCode().ToString());
+            MessageBox.Show(val2.GetHashCode().ToString());
         }
         private void UpdateList()
         {
@@ -89,6 +94,36 @@ namespace AnimalZooApp.Views
         {
             new AnimalManageWindow(null,_ctx).ShowDialog();
             UpdateList();
+        }
+
+        private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            new AnimalManageWindow(ValiersListView.SelectedValue as Animal, _ctx).ShowDialog();
+            UpdateList();
+        }
+
+        private void ListViewItem_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key != Key.Delete || ValiersListView.SelectedValue == null) return;
+
+            var input = MessageBox.Show("Вы точно хотите удалить эту запись?","Удаление",MessageBoxButton.YesNo,MessageBoxImage.Question);
+
+            if (input == MessageBoxResult.Yes)
+            {
+                _ctx.Animals.Remove((Animal)ValiersListView.SelectedValue);
+                _ctx.SaveChanges();
+                UpdateList();
+            }
+        }
+
+        private void LogOutButton_Click(object sender, RoutedEventArgs e)
+        {
+            var tempWnd = Application.Current.MainWindow;
+            Properties.Settings.Default.RememeberMe = false; 
+            Properties.Settings.Default.Save();
+            Application.Current.MainWindow = new LoginWindow();
+            tempWnd.Close();
+            Application.Current.MainWindow.Show();
         }
     }
 }

@@ -5,13 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AnimalZooApp.Views"
         mc:Ignorable="d"
-        Title="Окно входа" Height="200" Width="250" WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown">
+        Title="Окно входа" Height="200" Width="250" WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown" Icon="/Assets/Images/Icon.png" Background="{StaticResource WindowPrimaryColor}">
     
     <StackPanel Orientation="Vertical" Margin="10" VerticalAlignment="Center">
 
         <TextBlock x:Name="TestTextBlock" Margin="10" Text="2 + 2 = ?" HorizontalAlignment="Center"/>
-        <TextBox x:Name="TestTextBox" Margin="10" TabIndex="1"/>
-        <Button x:Name="TestButton" Margin="10" Content="Вход" Click="TestButton_Click" TabIndex="0"/>
+        <TextBox x:Name="TestTextBox" Margin="10" TabIndex="1" Style="{StaticResource TextBoxStyle1}" Tag="Введите ответ"/>
+        <CheckBox Content="Запомнить вход" x:Name="RememberMeCheckBox" Click="RememberMeCheckBox_Click" Margin="10,0"/>
+        <Button x:Name="TestButton" Margin="10" Content="Вход" Click="TestButton_Click" TabIndex="0" Style="{StaticResource ButtonStyle1}"/>
 
     </StackPanel>
     

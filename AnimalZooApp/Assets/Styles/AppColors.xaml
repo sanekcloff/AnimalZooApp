@@ -1,0 +1,20 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--#region Window-->
+    <SolidColorBrush x:Key="WindowPrimaryColor" Color="#faf3de"/>
+    <SolidColorBrush x:Key="WindowSecondaryColor" Color="#faf2db"/>
+    <SolidColorBrush x:Key="WindowTertiaryColor" Color="#f9f1d7"/>
+    <!--#endregion-->
+    <!--#region Button-->
+    <SolidColorBrush x:Key="ButtonPrimaryColor" Color="#fbefd0"/>
+    <SolidColorBrush x:Key="ButtonSecondaryColor" Color="#fdecc9"/>
+    <SolidColorBrush x:Key="ButtonAccentColor" Color="#fce8c2"/>
+    <SolidColorBrush x:Key="ButtonActiveColor" Color="#fae3ba"/>
+    <!--#endregion-->
+    <!--#region Button-->
+    <SolidColorBrush x:Key="BorderPrimaryColor" Color="#f9dfb5"/>
+    <SolidColorBrush x:Key="BorderSecondaryColor" Color="#f7dab0"/>
+    <!--#endregion-->
+    
+</ResourceDictionary>

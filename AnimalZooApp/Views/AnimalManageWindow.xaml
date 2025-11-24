@@ -5,15 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AnimalZooApp.Views"
         mc:Ignorable="d"
-        Title="AnimalManageWindow" Height="500" Width="500">
+        Title="AnimalManageWindow" Height="500" Width="500" Icon="/Assets/Images/Icon.png" Background="{StaticResource WindowTertiaryColor}">
     
     <StackPanel Orientation="Vertical" Margin="10" VerticalAlignment="Center">
 
         <TextBlock Text="Имя животного" Margin="10,5,10,2.5"/>
-        <TextBox x:Name="NameTextBox" Margin="10,2.5,10,5"/>
+        <TextBox x:Name="NameTextBox" Margin="10,2.5,10,5" Style="{StaticResource TextBoxStyle1}" Tag="Введите имя"/>
 
         <TextBlock Text="Описание" Margin="10,5,10,2.5"/>
-        <TextBox x:Name="DescriptionTextBox" Margin="10,2.5,10,5" TextWrapping="Wrap" Height="60"/>
+        <TextBox x:Name="DescriptionTextBox" Margin="10,2.5,10,5" TextWrapping="Wrap" Height="60" Style="{StaticResource TextBoxStyle1}" Tag="Введите описание"/>
 
         <TextBlock Text="Дата рождения" Margin="10,5,10,2.5"/>
         <DatePicker x:Name="DateOfBirthDatePicker" Margin="10,2.5,10,5"/>
@@ -24,12 +24,12 @@
         <ComboBox x:Name="DietComboBox" Margin="10,2.5,10,5"/>
 
         <TextBlock Text="Вес животного" Margin="10,5,10,2.5"/>
-        <TextBox x:Name="WeightTextBox" Margin="10,2.5,10,5"/>
+        <TextBox x:Name="WeightTextBox" Margin="10,2.5,10,5" Style="{StaticResource TextBoxStyle1}" Tag="Введите вес"/>
 
         <TextBlock Text="Вольер" Margin="10,5,10,2.5"/>
         <ComboBox x:Name="ValierComboBox" Margin="10,2.5,10,5" DisplayMemberPath="Title"/>
 
-        <Button x:Name="ActionButton" Content="Action" Margin="10,5" Click="ActionButton_Click"/>
+        <Button x:Name="ActionButton" Content="Action" Margin="10,5" Click="ActionButton_Click" Style="{StaticResource ButtonStyle1}"/>
 
     </StackPanel>
     

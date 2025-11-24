@@ -44,6 +44,9 @@ namespace AnimalZooApp.Views
                     Diet.Herbivorous => DietComboBox.Items[1],
                     _ => DietComboBox.Items[2],
                 };
+                ValierComboBox.SelectedIndex = 0;
+                ActionButton.Content = "Добавить";
+                Title = "Окно добавления животного";
             }
             else
             {
@@ -61,11 +64,14 @@ namespace AnimalZooApp.Views
                 };
                 WeightTextBox.Text = _animal.Weight.ToString();
                 ValierComboBox.SelectedValue = _animal.Valier;
+                ActionButton.Content = "Обновить";
+                Title = "Окно обновления животного";
             }
         }
 
         private void ActionButton_Click(object sender, RoutedEventArgs e)
         {
+
             _animal.Name = NameTextBox.Text;
             _animal.Description = DescriptionTextBox.Text;
             _animal.DateOfBirth = DateOfBirthDatePicker.SelectedDate!.Value;
@@ -74,13 +80,15 @@ namespace AnimalZooApp.Views
             {
                 "Плотоядный" => Diet.Carnivorous,
                 "Травоядный" => Diet.Herbivorous,
-                _=>Diet.Carnivorous | Diet.Herbivorous,
+                _ => Diet.Carnivorous | Diet.Herbivorous,
             };
             _animal.Weight = Convert.ToDecimal(WeightTextBox.Text);
             _animal.Valier = (Valier)ValierComboBox.SelectedValue;
 
-            _ctx.Animals.Add(_animal);
+            if (_isAdd) _ctx.Animals.Add(_animal);
+
             _ctx.SaveChanges();
+            Close();
         }
     }
 }

@@ -14,6 +14,7 @@ namespace AnimalZooApp.Models
     }
     public class Animal
     {
+
         public Animal()
         {
             Name = string.Empty;
@@ -31,8 +32,8 @@ namespace AnimalZooApp.Models
             Diet = diet;
             Weight = weight;
         }
-
         public int Id { get; set; }
+
         public string Name { get; set; }
         public string? Description { get; set; }
         public DateTime DateOfBirth { get; set; }
@@ -63,7 +64,6 @@ namespace AnimalZooApp.Models
                 return (ushort)yearDiff;
             }
         }
-
         public override string ToString() => $"[{Id}] {Name} - {DescriptionText}: Дата рождения {DateOfBirth:d} - Возраст {Age}; Гендер {Gender}; Вес {Weight} кг; Рацион питания {DietText}";
     }
 }
