@@ -56,7 +56,7 @@ namespace AnimalZooApp.Migrations
 
                     b.HasIndex("ValierId");
 
-                    b.ToTable("Animals");
+                    b.ToTable("Animals", (string)null);
                 });
 
             modelBuilder.Entity("AnimalZooApp.Models.Valier", b =>
@@ -85,7 +85,7 @@ namespace AnimalZooApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Valiers");
+                    b.ToTable("Valiers", (string)null);
                 });
 
             modelBuilder.Entity("AnimalZooApp.Models.Animal", b =>

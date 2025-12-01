@@ -31,7 +31,6 @@ namespace AnimalZooApp.Views
                 {"Как переводится Pizza","пицца"},
             };
             RefreshTest();
-
             if (Properties.Settings.Default.RememeberMe)
             {
                 RememberMeCheckBox.IsChecked = true;
@@ -45,7 +44,7 @@ namespace AnimalZooApp.Views
 
         private void TestButton_Click(object sender, RoutedEventArgs e)
         {
-            if (TestTextBox.Text.ToLower() == _selectedTest.Value)
+            if (TestTextBox.Text.ToLower() == _selectedTest.Value.ToLower())
             {
                 MessageBox.Show("Верно!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
                 Properties.Settings.Default.Save();

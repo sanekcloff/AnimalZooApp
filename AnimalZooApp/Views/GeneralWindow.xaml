@@ -47,22 +47,49 @@
                         <Setter.Value>
                             <ControlTemplate TargetType="ListViewItem">
                                 
-                                <Border Background="{StaticResource ButtonPrimaryColor}" BorderBrush="{StaticResource BorderPrimaryColor}" BorderThickness="3" CornerRadius="10" Margin="10">
+                                <Border x:Name="ItemBorder" Background="{StaticResource ButtonPrimaryColor}" BorderBrush="{StaticResource BorderPrimaryColor}" BorderThickness="3" CornerRadius="10" Margin="10">
 
                                     <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10">
 
-                                        <TextBlock Text="{Binding Name}"/>
-                                        <TextBlock Text="{Binding DescriptionText}"/>
-                                        <TextBlock Text="{Binding DateOfBirth}"/>
-                                        <TextBlock Text="{Binding Gender}"/>
-                                        <TextBlock Text="{Binding DietText}"/>
-                                        <TextBlock Text="{Binding Weight}"/>
-                                        <TextBlock Text="{Binding Valier.Title}"/>
-                                        <TextBlock Text="{Binding Age}"/>
+                                        <TextBlock Text="{Binding NameAndValierText}" FontSize="20"/>
+                                        <TextBlock Text="{Binding DescriptionText, StringFormat=Описание: {0}}" TextWrapping="Wrap"/>
+                                        <TextBlock Text="{Binding DateOfBirth, StringFormat=Дата рождения: {0:d}}"/>
+                                        <TextBlock Text="{Binding Gender, StringFormat=Пол: {0}}"/>
+                                        <TextBlock Text="{Binding DietText, StringFormat=Рацион: {0}}"/>
+                                        <TextBlock Text="{Binding Weight, StringFormat=Вес: {0}}"/>
+                                        <TextBlock Text="{Binding Age, StringFormat=Возраст: {0}}"/>
 
                                     </StackPanel>
                                     
                                 </Border>
+
+                                <ControlTemplate.Triggers>
+
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="{StaticResource ButtonSecondaryColor}" TargetName="ItemBorder"/>
+                                    </Trigger>
+                                    
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" Value="{StaticResource ButtonAccentColor}" TargetName="ItemBorder"/>
+                                    </Trigger>
+
+                                    <MultiTrigger>
+
+                                        <MultiTrigger.Conditions>
+                                            <Condition Property="IsMouseOver" Value="True"/>
+                                            <Condition Property="IsSelected" Value="True"/>
+                                        </MultiTrigger.Conditions>
+
+                                        <MultiTrigger.Setters>
+
+                                            <Setter Property="Background" Value="{StaticResource ButtonActiveColor}" TargetName="ItemBorder"/>
+                                            <Setter Property="BorderBrush" Value="{StaticResource BorderSecondaryColor}"/>
+
+                                        </MultiTrigger.Setters>
+                                        
+                                    </MultiTrigger>
+
+                                </ControlTemplate.Triggers>
                                 
                             </ControlTemplate>
                         </Setter.Value>

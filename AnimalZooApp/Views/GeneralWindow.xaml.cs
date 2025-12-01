@@ -46,11 +46,6 @@ namespace AnimalZooApp.Views
             FilthComboBox.SelectedValue = _selectedFilth = _filthValues[0];
             SortComboBox.SelectedValue = _selectedSort = _sortValues[0];
             UpdateList();
-
-            var val1 = new String("1");
-            var val2 = new String("1").GetHashCode();
-            MessageBox.Show(val1.GetHashCode().ToString());
-            MessageBox.Show(val2.GetHashCode().ToString());
         }
         private void UpdateList()
         {

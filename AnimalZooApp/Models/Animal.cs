@@ -33,7 +33,6 @@ namespace AnimalZooApp.Models
             Weight = weight;
         }
         public int Id { get; set; }
-
         public string Name { get; set; }
         public string? Description { get; set; }
         public DateTime DateOfBirth { get; set; }
@@ -44,6 +43,7 @@ namespace AnimalZooApp.Models
         public int ValierId { get; set; }
         public Valier Valier { get; set; } = new Valier();
 
+        public string NameAndValierText => $"{Valier.Title} / {Name}";
         public string Gender => IsWoman ? "Женский" : "Мужской";
         public string DietText => Diet switch
         {

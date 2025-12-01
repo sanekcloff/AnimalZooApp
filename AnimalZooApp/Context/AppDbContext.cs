@@ -10,6 +10,16 @@ namespace AnimalZooApp.Context
 {
     public class AppDbContext : DbContext
     {
+        public AppDbContext(DbContextOptions options) : base(options)
+        {
+            Database.EnsureCreated();
+        }
+
+        public AppDbContext()
+        {
+            Database.EnsureCreated();
+        }
+
         public DbSet<Animal> Animals { get; set; }
         public DbSet<Valier> Valiers { get; set; }
 
